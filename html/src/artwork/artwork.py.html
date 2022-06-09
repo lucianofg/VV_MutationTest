@@ -1,0 +1,496 @@
+<html><body><h1>src/artwork/artwork.py</h1>Killed 48 out of 93 mutants<h2>Timeouts</h2>Mutants that made the test suite take a lot longer so the tests were killed.<h3>Mutant 84</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -35,7 +35,7 @@
+         if adjacency_matrix[i, j]:
+             if j == 1:
+                 blocked = True
+-                break
++                continue
+             elif not discovered[j]:
+                 discovered[j] = 1
+                 i = j
+</pre><h3>Mutant 91</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -40,7 +40,7 @@
+                 discovered[j] = 1
+                 i = j
+                 j = 0
+-        j += 1
++        j = 1
+ 
+     return not blocked
+ 
+</pre><h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 17</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -11,7 +11,7 @@
+ 
+ def paint_can_be_stolen(sensors: List[Sensor], m: int, n: int) -> bool:
+     k = len(sensors)
+-    adjacency_matrix = np.zeros((k + 2, k + 2))
++    adjacency_matrix = np.zeros((k + 3, k + 2))
+ 
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+</pre><h3>Mutant 19</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -11,7 +11,7 @@
+ 
+ def paint_can_be_stolen(sensors: List[Sensor], m: int, n: int) -> bool:
+     k = len(sensors)
+-    adjacency_matrix = np.zeros((k + 2, k + 2))
++    adjacency_matrix = np.zeros((k + 2, k + 3))
+ 
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+</pre><h3>Mutant 21</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -14,7 +14,7 @@
+     adjacency_matrix = np.zeros((k + 2, k + 2))
+ 
+     for i, s in enumerate(sensors):
+-        if (s.y <= s.range) or (s.x + s.range >= m):
++        if (s.y < s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+</pre><h3>Mutant 22</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -14,7 +14,7 @@
+     adjacency_matrix = np.zeros((k + 2, k + 2))
+ 
+     for i, s in enumerate(sensors):
+-        if (s.y <= s.range) or (s.x + s.range >= m):
++        if (s.y <= s.range) or (s.x - s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+</pre><h3>Mutant 23</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -14,7 +14,7 @@
+     adjacency_matrix = np.zeros((k + 2, k + 2))
+ 
+     for i, s in enumerate(sensors):
+-        if (s.y <= s.range) or (s.x + s.range >= m):
++        if (s.y <= s.range) or (s.x + s.range > m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+</pre><h3>Mutant 24</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -14,7 +14,7 @@
+     adjacency_matrix = np.zeros((k + 2, k + 2))
+ 
+     for i, s in enumerate(sensors):
+-        if (s.y <= s.range) or (s.x + s.range >= m):
++        if (s.y <= s.range) and (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+</pre><h3>Mutant 25</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -15,7 +15,7 @@
+ 
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+-            adjacency_matrix[i + 2, 0] = 1
++            adjacency_matrix[i - 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+</pre><h3>Mutant 28</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -15,7 +15,7 @@
+ 
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+-            adjacency_matrix[i + 2, 0] = 1
++            adjacency_matrix[i + 2, 0] = 2
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+</pre><h3>Mutant 29</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -15,7 +15,7 @@
+ 
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+-            adjacency_matrix[i + 2, 0] = 1
++            adjacency_matrix[i + 2, 0] = None
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+</pre><h3>Mutant 31</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -16,7 +16,7 @@
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+-            adjacency_matrix[0, i + 2] = 1
++            adjacency_matrix[0, i - 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+</pre><h3>Mutant 33</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -16,7 +16,7 @@
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+-            adjacency_matrix[0, i + 2] = 1
++            adjacency_matrix[0, i + 2] = 2
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+</pre><h3>Mutant 34</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -16,7 +16,7 @@
+     for i, s in enumerate(sensors):
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+-            adjacency_matrix[0, i + 2] = 1
++            adjacency_matrix[0, i + 2] = None
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+</pre><h3>Mutant 35</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -17,7 +17,7 @@
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+-        if (s.x <= s.range) or (s.y + s.range >= n):
++        if (s.x < s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+</pre><h3>Mutant 36</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -17,7 +17,7 @@
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+-        if (s.x <= s.range) or (s.y + s.range >= n):
++        if (s.x <= s.range) or (s.y - s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+</pre><h3>Mutant 37</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -17,7 +17,7 @@
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+-        if (s.x <= s.range) or (s.y + s.range >= n):
++        if (s.x <= s.range) or (s.y + s.range > n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+</pre><h3>Mutant 38</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -17,7 +17,7 @@
+         if (s.y <= s.range) or (s.x + s.range >= m):
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+-        if (s.x <= s.range) or (s.y + s.range >= n):
++        if (s.x <= s.range) and (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+</pre><h3>Mutant 39</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -18,7 +18,7 @@
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+-            adjacency_matrix[i + 2, 1] = 1;
++            adjacency_matrix[i - 2, 1] = 1;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+     for i in range(k):
+</pre><h3>Mutant 42</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -18,7 +18,7 @@
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+-            adjacency_matrix[i + 2, 1] = 1;
++            adjacency_matrix[i + 2, 1] = 2;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+     for i in range(k):
+</pre><h3>Mutant 43</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -18,7 +18,7 @@
+             adjacency_matrix[i + 2, 0] = 1
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+-            adjacency_matrix[i + 2, 1] = 1;
++            adjacency_matrix[i + 2, 1] = None;
+             adjacency_matrix[1, i + 2] = 1;
+ 
+     for i in range(k):
+</pre><h3>Mutant 44</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -19,7 +19,7 @@
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+-            adjacency_matrix[1, i + 2] = 1;
++            adjacency_matrix[2, i + 2] = 1;
+ 
+     for i in range(k):
+         for j in range(i + 1, k):
+</pre><h3>Mutant 45</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -19,7 +19,7 @@
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+-            adjacency_matrix[1, i + 2] = 1;
++            adjacency_matrix[1, i - 2] = 1;
+ 
+     for i in range(k):
+         for j in range(i + 1, k):
+</pre><h3>Mutant 47</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -19,7 +19,7 @@
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+-            adjacency_matrix[1, i + 2] = 1;
++            adjacency_matrix[1, i + 2] = 2;
+ 
+     for i in range(k):
+         for j in range(i + 1, k):
+</pre><h3>Mutant 48</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -19,7 +19,7 @@
+             adjacency_matrix[0, i + 2] = 1
+         if (s.x <= s.range) or (s.y + s.range >= n):
+             adjacency_matrix[i + 2, 1] = 1;
+-            adjacency_matrix[1, i + 2] = 1;
++            adjacency_matrix[1, i + 2] = None;
+ 
+     for i in range(k):
+         for j in range(i + 1, k):
+</pre><h3>Mutant 49</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -22,7 +22,7 @@
+             adjacency_matrix[1, i + 2] = 1;
+ 
+     for i in range(k):
+-        for j in range(i + 1, k):
++        for j in range(i - 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+</pre><h3>Mutant 50</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -22,7 +22,7 @@
+             adjacency_matrix[1, i + 2] = 1;
+ 
+     for i in range(k):
+-        for j in range(i + 1, k):
++        for j in range(i + 2, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+</pre><h3>Mutant 51</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -24,7 +24,7 @@
+     for i in range(k):
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+-                adjacency_matrix[i + 2, j + 2] = 1;
++                adjacency_matrix[i - 2, j + 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+</pre><h3>Mutant 52</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -24,7 +24,7 @@
+     for i in range(k):
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+-                adjacency_matrix[i + 2, j + 2] = 1;
++                adjacency_matrix[i + 3, j + 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+</pre><h3>Mutant 53</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -24,7 +24,7 @@
+     for i in range(k):
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+-                adjacency_matrix[i + 2, j + 2] = 1;
++                adjacency_matrix[i + 2, j - 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+</pre><h3>Mutant 55</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -24,7 +24,7 @@
+     for i in range(k):
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+-                adjacency_matrix[i + 2, j + 2] = 1;
++                adjacency_matrix[i + 2, j + 2] = 2;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+</pre><h3>Mutant 56</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -24,7 +24,7 @@
+     for i in range(k):
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+-                adjacency_matrix[i + 2, j + 2] = 1;
++                adjacency_matrix[i + 2, j + 2] = None;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+</pre><h3>Mutant 57</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -25,7 +25,7 @@
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+-                adjacency_matrix[j + 2, i + 2] = 1;
++                adjacency_matrix[j - 2, i + 2] = 1;
+ 
+     blocked = False
+     discovered = [0] * (k + 2)
+</pre><h3>Mutant 59</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -25,7 +25,7 @@
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+-                adjacency_matrix[j + 2, i + 2] = 1;
++                adjacency_matrix[j + 2, i - 2] = 1;
+ 
+     blocked = False
+     discovered = [0] * (k + 2)
+</pre><h3>Mutant 60</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -25,7 +25,7 @@
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+-                adjacency_matrix[j + 2, i + 2] = 1;
++                adjacency_matrix[j + 2, i + 3] = 1;
+ 
+     blocked = False
+     discovered = [0] * (k + 2)
+</pre><h3>Mutant 61</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -25,7 +25,7 @@
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+-                adjacency_matrix[j + 2, i + 2] = 1;
++                adjacency_matrix[j + 2, i + 2] = 2;
+ 
+     blocked = False
+     discovered = [0] * (k + 2)
+</pre><h3>Mutant 62</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -25,7 +25,7 @@
+         for j in range(i + 1, k):
+             if they_overlap(sensors[i], sensors[j]):
+                 adjacency_matrix[i + 2, j + 2] = 1;
+-                adjacency_matrix[j + 2, i + 2] = 1;
++                adjacency_matrix[j + 2, i + 2] = None;
+ 
+     blocked = False
+     discovered = [0] * (k + 2)
+</pre><h3>Mutant 64</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -27,7 +27,7 @@
+                 adjacency_matrix[i + 2, j + 2] = 1;
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+-    blocked = False
++    blocked = None
+     discovered = [0] * (k + 2)
+ 
+     i, j = 0, 1
+</pre><h3>Mutant 68</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -28,7 +28,7 @@
+                 adjacency_matrix[j + 2, i + 2] = 1;
+ 
+     blocked = False
+-    discovered = [0] * (k + 2)
++    discovered = [0] * (k + 3)
+ 
+     i, j = 0, 1
+     while j < k + 2 and i < k + 2:
+</pre><h3>Mutant 71</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -30,7 +30,7 @@
+     blocked = False
+     discovered = [0] * (k + 2)
+ 
+-    i, j = 0, 1
++    i, j = 0, 2
+     while j < k + 2 and i < k + 2:
+         if adjacency_matrix[i, j]:
+             if j == 1:
+</pre><h3>Mutant 76</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -31,7 +31,7 @@
+     discovered = [0] * (k + 2)
+ 
+     i, j = 0, 1
+-    while j < k + 2 and i < k + 2:
++    while j < k + 2 and i <= k + 2:
+         if adjacency_matrix[i, j]:
+             if j == 1:
+                 blocked = True
+</pre><h3>Mutant 78</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -31,7 +31,7 @@
+     discovered = [0] * (k + 2)
+ 
+     i, j = 0, 1
+-    while j < k + 2 and i < k + 2:
++    while j < k + 2 and i < k + 3:
+         if adjacency_matrix[i, j]:
+             if j == 1:
+                 blocked = True
+</pre><h3>Mutant 81</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -33,7 +33,7 @@
+     i, j = 0, 1
+     while j < k + 2 and i < k + 2:
+         if adjacency_matrix[i, j]:
+-            if j == 1:
++            if j == 2:
+                 blocked = True
+                 break
+             elif not discovered[j]:
+</pre><h3>Mutant 86</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -37,7 +37,7 @@
+                 blocked = True
+                 break
+             elif not discovered[j]:
+-                discovered[j] = 1
++                discovered[j] = 2
+                 i = j
+                 j = 0
+         j += 1
+</pre><h3>Mutant 87</h3><pre>--- src/artwork/artwork.py
++++ src/artwork/artwork.py
+@@ -37,7 +37,7 @@
+                 blocked = True
+                 break
+             elif not discovered[j]:
+-                discovered[j] = 1
++                discovered[j] = None
+                 i = j
+                 j = 0
+         j += 1
+</pre></body></html>
